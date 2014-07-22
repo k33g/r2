@@ -1,0 +1,3 @@
+.idea/*
+node_modules/*
+dependencies/bower_components/*

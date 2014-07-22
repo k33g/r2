@@ -1,0 +1,7 @@
+{
+  "name": "r2",
+  "version": "0.0.0",
+  "dependencies": {
+    "traceur-runtime": "0.0.49"
+  }
+}
