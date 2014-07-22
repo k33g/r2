@@ -1,14 +1,39 @@
 import Request from './r2/Request';
 
+var body = document.querySelector('body');
+
+//=== JSONP tests ===
+new Request("http://www.cjihrig.com/development/jsonp/jsonp.php")
+  .jsonp("message=Hello")
+  .then((data) => {
+    body.innerHTML += "<b>JSONP(cjihrig.com):</b><br>";
+    console.log("JSONP:", data);
+    body.innerHTML += `<p>${JSON.stringify(data)}</p>`;
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+
+//http://www.geonames.org/postalCodeLookupJSON?postalcode=15261&country=US&callback=jsonpCallback
+new Request("http://www.geonames.org/postalCodeLookupJSON")
+  .jsonp("postalcode=15261&country=US")
+  .then((data) => {
+    body.innerHTML += "<b>JSONP(geonames.com):</b><br>";
+    console.log("JSONP (postalCodeLookupJSON):", data);
+    body.innerHTML += `<p>${JSON.stringify(data)}</p>`;
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
 //=== GET Tests ===
 
 var request = new Request("/humans");
 
-var body = document.querySelector('body');
-
 request.get().then((data) => {
   console.log(data);
-  body.innerHTML += "Get all Humans:<br>";
+  body.innerHTML += "<b>Get all Humans:</b><br>";
   data.forEach( (human) => { body.innerHTML += `<p>${JSON.stringify(human)}</p>`; });
 })
 

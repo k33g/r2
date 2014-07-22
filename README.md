@@ -51,6 +51,17 @@ new Request("/humans/hFPDywuRsPdJM7Fa").delete()
   .catch((error) => {
     console.log(error);
   });
+
+
+//JSONP Call
+new Request("http://www.geonames.org/postalCodeLookupJSON")
+  .jsonp("postalcode=15261&country=US")
+  .then((data) => {
+    console.log("JSONP (postalCodeLookupJSON):", data);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 ```
 
 ##Development mode

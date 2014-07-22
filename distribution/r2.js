@@ -10,6 +10,25 @@ var $___46__46__47_src_47_r2_47_Request__ = (function() {
       this.url = url;
       return this;
     },
+    jsonp: function(params) {
+      var $__0 = this;
+      return new Promise((function(resolve, reject) {
+        $__0.callbackName = 'jsonp_callback_' + Math.round(100000 * Math.random());
+        var script = document.createElement('script');
+        script.id = $__0.callbackName;
+        window[$__0.callbackName] = (function(data) {
+          delete window[$__0.callbackName];
+          var findScript = document.querySelector("#" + $__0.callbackName);
+          findScript.parentElement.removeChild(findScript);
+          resolve(data);
+        });
+        script.src = $__0.url + ($__0.url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + $__0.callbackName + (params === undefined ? "" : "&" + params);
+        document.body.appendChild(script);
+        script.onerror = (function(error) {
+          reject(error);
+        });
+      }));
+    },
     sendRequest: function() {
       var $__0 = this;
       return new Promise((function(resolve, reject) {
