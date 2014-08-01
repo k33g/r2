@@ -1,65 +1,6 @@
 /*
-#R2 Request
-
-##GET
-
-    new Request("/humans").get().then((data) => {
-      console.log(data);
-    })
-
-    new Request("/humans/hFPDywuRsPdJM7Fa").get()
-      .then((data)=>{
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-##POST
-
-    new Request("/humans")
-      .post({firstName:"Philippe", lastName:"Charrière"})
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-
-##PUT
-
-    new Request("/humans/yk7LXLlHXFD9Uch2")
-      .put({firstName:"Tony", lastName:"Stark"})
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-
-##DELETE
-
-    new Request("/humans/hFPDywuRsPdJM7Fa").delete()
-      .then((data)=>{
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-##JSONP
-
-    new Request("http://www.geonames.org/postalCodeLookupJSON")
-      .jsonp("postalcode=15261&country=US")
-      .then((data) => {
-        console.log("JSONP (postalCodeLookupJSON):", data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-
- */
+#R2 Request ES6 version 0.0.0 01.08.2014 by @k33g_org aka @k33g
+*/
 class Request {
 
   constructor (url) {
@@ -88,7 +29,9 @@ class Request {
         resolve(data);
       };
 
-      script.src = this.url + (this.url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + this.callbackName +(params === undefined ? "" : "&"+params);
+      script.src = this.url
+          + (this.url.indexOf('?') >= 0 ? '&' : '?')
+          + 'callback=' + this.callbackName +(params === undefined ? "" : "&"+params);
 
       document.body.appendChild(script);
 
@@ -154,5 +97,4 @@ class Request {
   }
 }
 
-export default Request;
-
+export default { Request };

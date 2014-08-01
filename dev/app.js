@@ -3,18 +3,11 @@ var express = require('express')
   , bodyParser = require('body-parser')
   , DataStore = require('nedb')
   , app = express()
-  , http_port = null
-  , humansDb = new DataStore({ filename: 'humansDb.nedb' })
-  , args = process.argv.splice(2)
-  , mode = args[0] || 'dev'
-  , static_path = mode == 'dev' ? '/try' : mode == 'prod' ? '/public' : '/';
+  , http_port = 3000
+  , humansDb = new DataStore({ filename: 'humansDb.nedb' });
 
-app.use(express.static(__dirname + static_path));
+app.use(express.static(__dirname + '/'));
 app.use(bodyParser());
-
-function ouch() {
-  new Error("bad parameter");
-}
 
 // get all humans
 app.get("/humans", function(req, res) {
@@ -59,7 +52,6 @@ app.put("/humans/:id", function(req, res) {
 
 // run app when database loaded
 humansDb.loadDatabase(function (err) {
-  http_port = args[1] || process.env.PORT || 3000;
   app.listen(http_port);
-  console.log("Listening on:", http_port, "Static path:", static_path);
+  console.log("Listening on " + http_port);
 });

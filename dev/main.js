@@ -1,9 +1,9 @@
-import Request from './r2/Request';
+import r2 from 'src/r2';
 
 var body = document.querySelector('body');
 
 //=== JSONP tests ===
-new Request("http://www.cjihrig.com/development/jsonp/jsonp.php")
+new r2.Request("http://www.cjihrig.com/development/jsonp/jsonp.php")
   .jsonp("message=Hello")
   .then((data) => {
     body.innerHTML += "<b>JSONP(cjihrig.com):</b><br>";
@@ -16,7 +16,7 @@ new Request("http://www.cjihrig.com/development/jsonp/jsonp.php")
 
 
 //http://www.geonames.org/postalCodeLookupJSON?postalcode=15261&country=US&callback=jsonpCallback
-new Request("http://www.geonames.org/postalCodeLookupJSON")
+new r2.Request("http://www.geonames.org/postalCodeLookupJSON")
   .jsonp("postalcode=15261&country=US")
   .then((data) => {
     body.innerHTML += "<b>JSONP(geonames.com):</b><br>";
@@ -29,7 +29,7 @@ new Request("http://www.geonames.org/postalCodeLookupJSON")
 
 //=== GET Tests ===
 
-var request = new Request("/humans");
+var request = new r2.Request("/humans");
 
 request.get().then((data) => {
   console.log(data);
@@ -37,7 +37,7 @@ request.get().then((data) => {
   data.forEach( (human) => { body.innerHTML += `<p>${JSON.stringify(human)}</p>`; });
 })
 
-new Request("/humans/hFPDywuRsPdJM7Fa").get()
+new r2.Request("/humans/hFPDywuRsPdJM7Fa").get()
   .then((data)=>{
     console.log("hFPDywuRsPdJM7Fa:", data);
     body.innerHTML += `<p>Get one Human:<br>${JSON.stringify(data)}</p>`;
@@ -46,7 +46,7 @@ new Request("/humans/hFPDywuRsPdJM7Fa").get()
     console.log(error);
   });
 
-new Request("/humans").get("hFPDywuRsPdJM7Fa")
+new r2.Request("/humans").get("hFPDywuRsPdJM7Fa")
   .then((data)=>{
     console.log("Bis: hFPDywuRsPdJM7Fa:", data);
     body.innerHTML += `<p>Get an other Human:<br>${JSON.stringify(data)}</p>`;
@@ -55,7 +55,7 @@ new Request("/humans").get("hFPDywuRsPdJM7Fa")
     console.log(error);
   });
 
-new Request("/animals/hFPDywuRsPdJM7Fa").get()
+new r2.Request("/animals/hFPDywuRsPdJM7Fa").get()
   .then((data)=>{
     console.log(data);
     body.innerHTML += `<p>Get an Animal:<br>${JSON.stringify(data)}</p>`;
@@ -68,7 +68,7 @@ new Request("/animals/hFPDywuRsPdJM7Fa").get()
 
 //=== POST Tests ===
 
-new Request("/humans")
+new r2.Request("/humans")
   .post({firstName:"Philippe", lastName:"Charrière"})
   .then((data) => {
     console.log("POST Results:", data);
@@ -80,7 +80,7 @@ new Request("/humans")
 
 //=== PUT Tests ===
 
-new Request("/humans/yk7LXLlHXFD9Uch2")
+new r2.Request("/humans/yk7LXLlHXFD9Uch2")
   .put({firstName:"Tony", lastName:"Stark"})
   .then((data) => {
     console.log("PUT Results:", data);
@@ -92,7 +92,7 @@ new Request("/humans/yk7LXLlHXFD9Uch2")
 
 //=== String Response ===
 
-new Request("/README.md")
+new r2.Request("/README.md")
   .get()
   .then((data) => {
     console.log("GET String response Results:", data);
