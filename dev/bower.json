@@ -1,5 +1,5 @@
 {
-  "name": "es6-project",
+  "name": "r2",
   "version": "0.0.0",
   "dependencies": {
     "traceur": "0.0.49"
