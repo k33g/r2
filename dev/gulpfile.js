@@ -14,6 +14,10 @@ gulp.task('dist', function() {
     gulp.src('src/r2.md').pipe(gulp.dest('../'));
   });
 
+});
+
+gulp.task('transpile', function() {
+
   /* to ES5 */
   fs.unlink('../r2.es5.js', function (err) {
     if (err) { console.log(err.message); };
@@ -21,6 +25,7 @@ gulp.task('dist', function() {
   });
 
 });
+
 
 gulp.task('default', function() {
 
