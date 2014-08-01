@@ -6,7 +6,7 @@ Rest Requests Helper
 ##Usage:
 
 ```javascript
-import r2 from './distribution/r2';
+import r2 from './r2';
 
 //Get all humans
 new r2.Request("/humans").get().then((data) => {

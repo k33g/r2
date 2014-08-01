@@ -1,6 +1,6 @@
-var $___46__46__47_dev_47_src_47_r2__ = (function() {
+var $__dev_47_src_47_r2__ = (function() {
   "use strict";
-  var __moduleName = "../dev/src/r2";
+  var __moduleName = "dev/src/r2";
   var Request = function Request(url) {
     this.request = new XMLHttpRequest();
     this.url = url;
@@ -79,10 +79,10 @@ var $___46__46__47_dev_47_src_47_r2__ = (function() {
       return $__default;
     }};
 })();
-var $___46__46__47_dev_47_src_47_r2_46_launcher__ = (function() {
+var $__dev_47_src_47_r2_46_launcher__ = (function() {
   "use strict";
-  var __moduleName = "../dev/src/r2.launcher";
-  var r2 = $___46__46__47_dev_47_src_47_r2__.default;
+  var __moduleName = "dev/src/r2.launcher";
+  var r2 = $__dev_47_src_47_r2__.default;
   window.r2 = r2;
   return {};
 })();
